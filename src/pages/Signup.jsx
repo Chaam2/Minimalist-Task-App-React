@@ -1,18 +1,68 @@
+import { useRef, useState } from 'react';
+import { postSignup } from '../api/Fetcher';
+import { Link, useNavigate } from 'react-router-dom';
+
 export default function Singup() {
+  const navigate = useNavigate();
+
+  const [emailValue, setEmailValue] = useState('');
+  const [passwordValue, setPasswordValue] = useState('');
+  const [validError, setValidError] = useState(false);
+
+  const handleEmailInputChange = (e) => {
+    setEmailValue(() => e.target.value);
+    if (!/@/.test(e.target.value) || !passwordValue) {
+      setValidError(true);
+    } else {
+      setValidError(false);
+    }
+  };
+  const handlePasswordInputChange = (e) => {
+    setPasswordValue(() => e.target.value);
+    if (e.target.value.length < 8 || !emailValue) {
+      setValidError(true);
+    } else {
+      setValidError(false);
+    }
+  };
+
+  const handleSignupSubmit = async (e) => {
+    e.preventDefault();
+    const data = {
+      email: emailValue,
+      password: passwordValue,
+    };
+    await postSignup(data);
+    alert('성공적으로 가입되었습니다!\n로그인페이지로 이동합니다.');
+    navigate('/signin');
+  };
+
   return (
     <div>
       <h1>회원가입</h1>
-      <form>
+      <form onSubmit={handleSignupSubmit}>
         <label htmlFor="email">이메일 주소*</label>
-        <input type="email" id="email" data-testid="email-input" />
+        <input
+          type="email"
+          id="email"
+          data-testid="email-input"
+          value={emailValue}
+          onChange={handleEmailInputChange}
+        />
         <label htmlFor="password">비밀번호*</label>
-        <input type="password" id="password" data-testid="password-input" minLength="8" />
-        <button type="submit" data-testid="signup-button">
+        <input
+          type="password"
+          id="password"
+          data-testid="password-input"
+          value={passwordValue}
+          onChange={handlePasswordInputChange}
+        />
+        <button type="submit" data-testid="signup-button" disabled={validError}>
           회원가입
         </button>
       </form>
       <div>
-        이미 가입하셨다면? <a href="/signup">로그인</a>
+        이미 가입하셨다면? <Link to="/signin">로그인</Link>
       </div>
     </div>
   );
