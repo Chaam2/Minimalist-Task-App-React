@@ -1,14 +1,20 @@
-import { useRef, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { postSignup } from '../api/Fetcher';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function Singup() {
   const navigate = useNavigate();
+  useEffect(() => {
+    if (localStorage.getItem('Token')) {
+      navigate('/todo');
+    }
+  }, []);
 
   const [emailValue, setEmailValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
   const [validError, setValidError] = useState(false);
 
+  // 이메일, 비밀번호 유효성 검사
   const handleEmailInputChange = (e) => {
     setEmailValue(() => e.target.value);
     if (!/@/.test(e.target.value) || !passwordValue) {
@@ -26,6 +32,7 @@ export default function Singup() {
     }
   };
 
+  // 회원가입 api요청 및 리다이렉트
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
     const data = {
