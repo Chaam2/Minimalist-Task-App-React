@@ -1,8 +1,7 @@
+import { useRef, useState } from 'react';
 import { deleteTodo, updateTodo } from '../api/Fetcher';
-
 import { useRecoilState } from 'recoil';
 import { todoListState } from '../recoil/todoListState';
-import { useRef, useState } from 'react';
 
 export default function TodoItem({ todo }) {
   const [todoList, setTodoList] = useRecoilState(todoListState);
@@ -34,8 +33,11 @@ export default function TodoItem({ todo }) {
     <li>
       <input type="checkbox" checked={todo.isCompleted} onChange={handleUpdateTodo} />
       <input defaultValue={todo.todo} ref={todoRef} />
-      <button onClick={handleUpdateTodo}>완료</button>
+      <button data-testid="submit-button" onClick={handleUpdateTodo}>
+        완료
+      </button>
       <button
+        data-testid="cancel-button"
         onClick={() => {
           setIsEditing(false);
         }}
@@ -46,15 +48,18 @@ export default function TodoItem({ todo }) {
   ) : (
     <li>
       <input type="checkbox" checked={todo.isCompleted} onChange={handleUpdateTodo} />
-      <input value={todo.todo} ref={todoRef} readOnly />
+      <input value={todo.todo} ref={todoRef} data-testid="modify-input" readOnly />
       <button
+        data-testid="modify-button"
         onClick={() => {
           setIsEditing(true);
         }}
       >
         수정
       </button>
-      <button onClick={handleDeleteClick}>삭제</button>
+      <button data-testid="delete-button" onClick={handleDeleteClick}>
+        삭제
+      </button>
     </li>
   );
 }
