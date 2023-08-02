@@ -1,4 +1,4 @@
-import { updateTodo } from '../api/Fetcher';
+import { deleteTodo, updateTodo } from '../api/Fetcher';
 
 import { useRecoilState } from 'recoil';
 import { todoListState } from '../recoil/todoListState';
@@ -9,6 +9,7 @@ export default function TodoItem({ todo }) {
   const [isEditing, setIsEditing] = useState(false);
   const todoRef = useRef(todo.todo);
 
+  // Update todo
   const handleUpdateTodo = async (e) => {
     const checkboxData = {
       todo: todoRef.current.value,
@@ -20,6 +21,13 @@ export default function TodoItem({ todo }) {
     );
     setTodoList(updatedList);
     setIsEditing(false);
+  };
+
+  // Delete todo
+  const handleDeleteClick = async () => {
+    await deleteTodo(todo.id);
+    const updatedList = todoList.filter((prevTodo) => prevTodo.id !== todo.id);
+    setTodoList(updatedList);
   };
 
   return isEditing ? (
@@ -46,7 +54,7 @@ export default function TodoItem({ todo }) {
       >
         수정
       </button>
-      <button>삭제</button>
+      <button onClick={handleDeleteClick}>삭제</button>
     </li>
   );
 }
