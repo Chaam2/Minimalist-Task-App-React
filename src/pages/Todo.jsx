@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { createTodo, getTodo, updateTodo } from '../api/Fetcher';
+import TodoItem from '../components/Todo_item';
 
 export default function Todo() {
   const todoRef = useRef();
@@ -33,30 +34,9 @@ export default function Todo() {
       />
       <ul>
         <li>To-do list</li>
-        {todoList.map((todo) => {
-          const handleCheckClick = async () => {
-            const checkboxData = {
-              todo: todo.todo,
-              isCompleted: !todo.isCompleted,
-            };
-            await updateTodo(checkboxData, todo.id);
-            await getTodoData();
-          };
-          return (
-            <li key={todo.id}>
-              <input type="checkbox" onChange={handleCheckClick} checked={todo.isCompleted} />
-              <span>{todo.todo}</span>
-              <button>✏️</button>
-              <button>🗑️</button>
-            </li>
-          );
-        })}
-        <li>
-          <input type="checkbox" />
-          수정모드
-          <button>✅</button>
-          <button>❎</button>
-        </li>
+        {todoList.map((todo) => (
+          <TodoItem key={todo.id} todo={todo} />
+        ))}
       </ul>
       <form onSubmit={handleTodoSubmit}>
         <input
