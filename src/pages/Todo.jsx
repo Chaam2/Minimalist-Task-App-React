@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+import * as todoStyle from '../style/todoStyle';
 import { useEffect, useRef } from 'react';
 import { createTodo, getTodo } from '../api/Fetcher';
 import TodoItem from '../components/Todo_item';
@@ -36,26 +38,33 @@ export default function Todo() {
   };
 
   return (
-    <div>
-      <img
-        width={200}
-        src="https://source.unsplash.com/random/?grayscale"
-        alt="메인 비주얼 이미지"
-      />
-      <ul>
-        <li>To-do list</li>
-        {todoList.length > 0 && todoList.map((todo) => <TodoItem key={todo.id} todo={todo} />)}
-      </ul>
-      <form onSubmit={handleTodoSubmit}>
-        <input
-          type="text"
-          placeholder="+ Add to-do"
-          ref={todoRef}
-          data-testid="new-todo-input"
-          required
+    <main role="main" css={todoStyle.main}>
+      <section css={todoStyle.imgSection}>
+        <img
+          css={todoStyle.mainImg}
+          src="https://source.unsplash.com/random/?grayscale"
+          alt="메인 비주얼 이미지"
         />
-        <button data-testid="new-todo-add-button">OK</button>
-      </form>
-    </div>
+      </section>
+      <section css={todoStyle.todoSection}>
+        <ul css={todoStyle.todoListUl}>
+          <li css={todoStyle.todoListTitle}>To-do list</li>
+          {todoList.length > 0 && todoList.map((todo) => <TodoItem key={todo.id} todo={todo} />)}
+        </ul>
+        <form css={todoStyle.createForm} onSubmit={handleTodoSubmit}>
+          <input
+            css={todoStyle.createInput}
+            type="text"
+            placeholder="+ Add to-do"
+            ref={todoRef}
+            data-testid="new-todo-input"
+            required
+          />
+          <button css={todoStyle.createButton} data-testid="new-todo-add-button">
+            Add
+          </button>
+        </form>
+      </section>
+    </main>
   );
 }
