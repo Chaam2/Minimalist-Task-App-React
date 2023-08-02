@@ -1,10 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
-import { createTodo, getTodo, updateTodo } from '../api/Fetcher';
+import { useEffect, useRef } from 'react';
+import { createTodo, getTodo } from '../api/Fetcher';
 import TodoItem from '../components/Todo_item';
+import { useRecoilState } from 'recoil';
+import { todoListState } from '../recoil/todoListState';
 
 export default function Todo() {
   const todoRef = useRef();
-  const [todoList, setTodoList] = useState([]);
+  const [todoList, setTodoList] = useRecoilState(todoListState);
 
   // Create Todo
   const handleTodoSubmit = async (e) => {
@@ -12,8 +14,9 @@ export default function Todo() {
     const todoData = {
       todo: todoRef.current.value,
     };
-    await createTodo(todoData);
+    const newTodo = await createTodo(todoData);
     todoRef.current.value = '';
+    setTodoList([...todoList, newTodo]);
   };
 
   const getTodoData = async () => {
@@ -34,9 +37,7 @@ export default function Todo() {
       />
       <ul>
         <li>To-do list</li>
-        {todoList.map((todo) => (
-          <TodoItem key={todo.id} todo={todo} />
-        ))}
+        {todoList.length > 0 && todoList.map((todo) => <TodoItem key={todo.id} todo={todo} />)}
       </ul>
       <form onSubmit={handleTodoSubmit}>
         <input
