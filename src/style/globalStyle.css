@@ -1,0 +1,12 @@
+@import './reset.css';
+
+body {
+  position: fixed;
+  font-family: 'YD Gothic 500';
+  color: #000000ce;
+}
+
+/* font family
+fontFamily:'YD Gothic 500',
+fontFamily: 'PerihelionCondBB', 
+*/

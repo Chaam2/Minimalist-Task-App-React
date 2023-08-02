@@ -1,4 +1,4 @@
-import './reset.css';
+import './style/globalStyle.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import Header from './components/Header';
