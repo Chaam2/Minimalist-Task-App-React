@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+import * as signStyle from '../style/signStyle';
 import { useEffect, useState } from 'react';
 import { postSignin } from '../api/Fetcher';
 import { Link, useNavigate } from 'react-router-dom';
@@ -49,32 +51,34 @@ export default function Signin() {
   };
 
   return (
-    <div>
-      <h1>로그인</h1>
-      <form onSubmit={handleSigninSubmit}>
-        <label htmlFor="email">이메일 주소*</label>
-        <input
-          type="email"
-          id="email"
-          data-testid="email-input"
-          value={emailValue}
-          onChange={handleEmailInputChange}
-        />
-        <label htmlFor="password">비밀번호*</label>
-        <input
-          type="password"
-          id="password"
-          data-testid="password-input"
-          value={passwordValue}
-          onChange={handlePasswordInputChange}
-        />
-        <button type="submit" data-testid="signin-button" disabled={validError}>
-          로그인
-        </button>
-      </form>
-      <div>
-        아직 계정이 없다면? <Link to="/signup">회원가입</Link>
-      </div>
-    </div>
+    <main role="main" css={signStyle.main}>
+      <section css={signStyle.signSection}>
+        <h1 css={signStyle.pageTitle}>로그인</h1>
+        <form onSubmit={handleSigninSubmit} css={signStyle.signForm}>
+          <label htmlFor="email">이메일 주소*</label>
+          <input
+            type="email"
+            id="email"
+            data-testid="email-input"
+            value={emailValue}
+            onChange={handleEmailInputChange}
+          />
+          <label htmlFor="password">비밀번호*</label>
+          <input
+            type="password"
+            id="password"
+            data-testid="password-input"
+            value={passwordValue}
+            onChange={handlePasswordInputChange}
+          />
+          <button type="submit" data-testid="signin-button" disabled={validError}>
+            로그인
+          </button>
+        </form>
+        <div css={signStyle.bottomLink}>
+          아직 계정이 없다면? <Link to="/signup">회원가입</Link>
+        </div>
+      </section>
+    </main>
   );
 }

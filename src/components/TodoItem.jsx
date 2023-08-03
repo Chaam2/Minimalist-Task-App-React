@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import * as todoItemStyle from '../style/todoItemStyle';
 import { AiOutlineSave, AiOutlineClose, AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { deleteTodo, updateTodo } from '../api/Fetcher';
 import { useRecoilState } from 'recoil';
 import { todoListState } from '../recoil/todoListState';
@@ -24,6 +24,11 @@ export default function TodoItem({ todo }) {
     setTodoList(updatedList);
     setIsEditing(false);
   };
+  useEffect(() => {
+    if (isEditing) {
+      todoRef.current.focus();
+    }
+  }, [isEditing]);
 
   // Delete todo
   const handleDeleteClick = async () => {
