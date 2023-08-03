@@ -9,6 +9,7 @@ export const main = {
 
 export const imgSection = {
   gridColumn: '1/6',
+  overflow: 'hidden',
 };
 
 export const mainImg = {
@@ -22,11 +23,13 @@ export const todoSection = {
   display: 'grid',
   gridTemplateRows: `repeat(8,1fr)`,
   borderLeft: `1px solid ${color.black00}`,
+  overflow: 'auto',
 };
 
 export const todoListUl = {
   gridRow: '1/8',
   borderBottom: `1px solid ${color.black00}`,
+  overflow: 'auto',
 
   '& >li: nth-child(2)': {
     marginTop: 49,

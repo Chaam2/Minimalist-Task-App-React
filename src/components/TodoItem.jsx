@@ -1,3 +1,6 @@
+/** @jsxImportSource @emotion/react */
+import * as todoItemStyle from '../style/todoItemStyle';
+import { AiOutlineSave, AiOutlineClose, AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 import { useRef, useState } from 'react';
 import { deleteTodo, updateTodo } from '../api/Fetcher';
 import { useRecoilState } from 'recoil';
@@ -30,11 +33,17 @@ export default function TodoItem({ todo }) {
   };
 
   return isEditing ? (
-    <li>
-      <input type="checkbox" checked={todo.isCompleted} onChange={handleUpdateTodo} />
-      <input defaultValue={todo.todo} ref={todoRef} />
+    <li css={[todoItemStyle.todoLi, todoItemStyle.editModeLi]}>
+      <input
+        css={todoItemStyle.checkbox}
+        type="checkbox"
+        checked={todo.isCompleted}
+        onChange={handleUpdateTodo}
+      />
+      <input css={todoItemStyle.todoInput} defaultValue={todo.todo} ref={todoRef} autoFocus />
+
       <button data-testid="submit-button" onClick={handleUpdateTodo}>
-        완료
+        <AiOutlineSave size={18} />
       </button>
       <button
         data-testid="cancel-button"
@@ -42,23 +51,35 @@ export default function TodoItem({ todo }) {
           setIsEditing(false);
         }}
       >
-        취소
+        <AiOutlineClose size={18} />
       </button>
     </li>
   ) : (
-    <li>
-      <input type="checkbox" checked={todo.isCompleted} onChange={handleUpdateTodo} />
-      <input value={todo.todo} ref={todoRef} data-testid="modify-input" readOnly />
+    <li css={todoItemStyle.todoLi}>
+      <input
+        css={todoItemStyle.checkbox}
+        type="checkbox"
+        checked={todo.isCompleted}
+        onChange={handleUpdateTodo}
+      />
+      <input
+        css={todoItemStyle.todoInput}
+        value={todo.todo}
+        ref={todoRef}
+        data-testid="modify-input"
+        readOnly
+      />
+
       <button
         data-testid="modify-button"
         onClick={() => {
           setIsEditing(true);
         }}
       >
-        수정
+        <AiOutlineEdit size={18} />
       </button>
       <button data-testid="delete-button" onClick={handleDeleteClick}>
-        삭제
+        <AiOutlineDelete size={18} />
       </button>
     </li>
   );
