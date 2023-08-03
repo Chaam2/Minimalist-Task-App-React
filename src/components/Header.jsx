@@ -1,43 +1,22 @@
 /** @jsxImportSource @emotion/react */
+import * as headerStyle from '../style/headerStyle';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
   return (
-    <div css={header}>
-      <img src="/TODO_logo.png" alt="logo" />
-      <div css={headerLinks}>
-        <a css={headerLink} href="/signin">
+    <div css={headerStyle.header}>
+      <Link to="/todo">
+        <img src="/TODO_logo.png" alt="logo" />
+      </Link>
+      <div css={headerStyle.headerLinks}>
+        <Link to="/signin" css={headerStyle.headerLink}>
           로그인
-        </a>
+        </Link>
         /
-        <a css={headerLink} href="/signup">
+        <Link to="/signup" css={headerStyle.headerLink}>
           회원가입
-        </a>
+        </Link>
       </div>
     </div>
   );
 }
-
-// css 스타일링
-
-const header = {
-  height: 56,
-  padding: '0 24px',
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  color: '#00000055',
-  borderBottom: '1px solid #000',
-};
-
-const headerLinks = {
-  display: 'flex',
-  gap: '8px',
-};
-
-const headerLink = {
-  color: '#00000099',
-  '&:hover': {
-    color: '#000',
-    fontWeight: 500,
-  },
-};
