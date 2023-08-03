@@ -27,42 +27,46 @@ export const todoSection = {
 export const todoListUl = {
   gridRow: '1/8',
   borderBottom: `1px solid ${color.black00}`,
-};
 
-export const todoListTitle = {
-  backgroundColor: `${color.main}`,
-  padding: 16,
-  position: 'fixed',
-  width: '100%',
-  borderBottom: `1px solid ${color.black00}`,
-  fontWeight: 'bold',
+  '& >li: nth-child(2)': {
+    marginTop: 49,
+  },
+
+  '& .listTitle': {
+    backgroundColor: `${color.main}`,
+    padding: 16,
+    position: 'fixed',
+    width: '100%',
+    borderBottom: `1px solid ${color.black00}`,
+    fontWeight: 'bold',
+  },
 };
 
 export const createForm = {
   gridRow: '8/9',
   display: 'flex',
-};
 
-export const createInput = {
-  flex: 1,
-  padding: 16,
-  border: 0,
-  fontSize: 16,
-  '&:focus': {
-    outline: 0,
+  '& .createInput': {
+    flex: 1,
+    padding: 16,
+    border: 0,
+    fontSize: 16,
+    '&:focus': {
+      outline: 0,
+    },
   },
-};
 
-export const createButton = {
-  border: 0,
-  padding: 0,
-  borderLeft: `1px solid ${color.black00}`,
-  aspectRatio: '1/1',
-  fontSize: 20,
-  fontFamily: 'PerihelionCondBB',
-  backgroundColor: `${color.black00}`,
-  color: `${color.white00}`,
-  '&:hover': {
-    backgroundColor: `${color.black10}`,
+  '& .createButton': {
+    border: 0,
+    padding: 0,
+    borderLeft: `1px solid ${color.black00}`,
+    aspectRatio: '1/1',
+    fontSize: 20,
+    fontFamily: 'PerihelionCondBB',
+    backgroundColor: `${color.black00}`,
+    color: `${color.white00}`,
+    '&:hover': {
+      backgroundColor: `${color.black10}`,
+    },
   },
 };

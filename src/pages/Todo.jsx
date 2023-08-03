@@ -48,19 +48,19 @@ export default function Todo() {
       </section>
       <section css={todoStyle.todoSection}>
         <ul css={todoStyle.todoListUl}>
-          <li css={todoStyle.todoListTitle}>To-do list</li>
+          <li className="listTitle">To-do list</li>
           {todoList.length > 0 && todoList.map((todo) => <TodoItem key={todo.id} todo={todo} />)}
         </ul>
         <form css={todoStyle.createForm} onSubmit={handleTodoSubmit}>
           <input
-            css={todoStyle.createInput}
+            className="createInput"
             type="text"
             placeholder="+ Add to-do"
             ref={todoRef}
             data-testid="new-todo-input"
             required
           />
-          <button css={todoStyle.createButton} data-testid="new-todo-add-button">
+          <button className="createButton" data-testid="new-todo-add-button">
             Add
           </button>
         </form>
