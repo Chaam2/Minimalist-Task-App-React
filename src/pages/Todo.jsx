@@ -2,7 +2,7 @@
 import * as todoStyle from '../style/todoStyle';
 import { useEffect, useRef } from 'react';
 import { createTodo, getTodo } from '../api/Fetcher';
-import TodoItem from '../components/Todo_item';
+import TodoItem from '../components/TodoItem';
 import { useRecoilState } from 'recoil';
 import { todoListState } from '../recoil/todoListState';
 import { useNavigate } from 'react-router-dom';
