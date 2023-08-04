@@ -43,6 +43,7 @@ export const todoListUl = {
     width: '100%',
     borderBottom: `1px solid ${color.black00}`,
     fontWeight: 'bold',
+    zIndex: 1,
   },
   '& .listSample': {
     padding: 16,
