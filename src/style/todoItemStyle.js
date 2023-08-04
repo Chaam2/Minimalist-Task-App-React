@@ -1,4 +1,5 @@
 import color from './color';
+import styled from '@emotion/styled';
 
 export const todoLi = {
   padding: 16,
@@ -21,7 +22,20 @@ export const editModeLi = {
   bottom: 2,
 };
 
-export const checkbox = {};
+export const checkbox = {
+  display: 'none',
+};
+
+export const CheckboxLabel = styled.label`
+  width: 16px;
+  height: 16px;
+  border: 1px solid ${color.black00};
+  background-image: url(${({ checked }) => (checked ? '/check.png' : '')});
+  background-size: 13px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: ${({ checked }) => (checked ? `${color.main}` : '')};
+`;
 
 export const todoInput = {
   flex: 1,

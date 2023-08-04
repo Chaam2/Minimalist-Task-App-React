@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import * as todoItemStyle from '../style/todoItemStyle';
+import { CheckboxLabel } from '../style/todoItemStyle';
 import { AiOutlineSave, AiOutlineClose, AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 import { useEffect, useRef, useState } from 'react';
 import { deleteTodo, updateTodo } from '../api/Fetcher';
@@ -39,8 +40,10 @@ export default function TodoItem({ todo }) {
 
   return isEditing ? (
     <li css={[todoItemStyle.todoLi, todoItemStyle.editModeLi]}>
+      <CheckboxLabel htmlFor={'checkbox_' + todo.id} checked={todo.isCompleted}></CheckboxLabel>
       <input
         css={todoItemStyle.checkbox}
+        id={'checkbox_' + todo.id}
         type="checkbox"
         checked={todo.isCompleted}
         onChange={handleUpdateTodo}
@@ -61,8 +64,10 @@ export default function TodoItem({ todo }) {
     </li>
   ) : (
     <li css={todoItemStyle.todoLi}>
+      <CheckboxLabel htmlFor={'checkbox_' + todo.id} checked={todo.isCompleted}></CheckboxLabel>
       <input
         css={todoItemStyle.checkbox}
+        id={'checkbox_' + todo.id}
         type="checkbox"
         checked={todo.isCompleted}
         onChange={handleUpdateTodo}
