@@ -51,7 +51,7 @@ export default function Todo() {
       <section css={todoStyle.todoSection}>
         <ul css={todoStyle.todoListUl}>
           <li className="listTitle">To-do list</li>
-          {todoList.length > 0 && todoList.map((todo) => <TodoItem key={todo.id} todo={todo} />)}
+          {todoList.length > 0 && <TodoItem />}
         </ul>
         <form css={todoStyle.createForm} onSubmit={handleTodoSubmit}>
           <input
