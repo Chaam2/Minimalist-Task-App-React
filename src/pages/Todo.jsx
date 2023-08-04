@@ -5,13 +5,15 @@ import { createTodo, getTodo } from '../api/Fetcher';
 import TodoItem from '../components/TodoItem';
 import { useRecoilState } from 'recoil';
 import { todoListState } from '../recoil/todoListState';
+import { authState } from '../recoil/authState';
 import { useNavigate } from 'react-router-dom';
 
 export default function Todo() {
   const navigate = useNavigate();
 
-  const todoRef = useRef();
   const [todoList, setTodoList] = useRecoilState(todoListState);
+  const [isLoggedIn] = useRecoilState(authState);
+  const todoRef = useRef();
 
   const getTodoData = async () => {
     const todoData = await getTodo();
@@ -19,7 +21,7 @@ export default function Todo() {
   };
   // Read Todo
   useEffect(() => {
-    if (!localStorage.getItem('Token')) {
+    if (!isLoggedIn) {
       navigate('/signin');
       return;
     }

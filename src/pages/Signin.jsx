@@ -10,15 +10,15 @@ export default function Signin() {
   const navigate = useNavigate();
 
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(authState);
+  const [emailValue, setEmailValue] = useState('');
+  const [passwordValue, setPasswordValue] = useState('');
+  const [validError, setValidError] = useState(false);
+
   useEffect(() => {
     if (isLoggedIn) {
       navigate('/todo');
     }
   }, []);
-
-  const [emailValue, setEmailValue] = useState('');
-  const [passwordValue, setPasswordValue] = useState('');
-  const [validError, setValidError] = useState(false);
 
   // 이메일, 비밀번호 유효성 검사
   const handleEmailInputChange = (e) => {
