@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import * as todoItemStyle from '../style/todoItemStyle';
-import { CheckboxLabel } from '../style/todoItemStyle';
+import { CheckboxLabel, TodoInput } from '../style/todoItemStyle';
 import { AiOutlineSave, AiOutlineClose, AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 import { useEffect, useRef, useState } from 'react';
 import { deleteTodo, updateTodo } from '../api/Fetcher';
@@ -48,7 +48,7 @@ export default function TodoItem({ todo }) {
         checked={todo.isCompleted}
         onChange={handleUpdateTodo}
       />
-      <input css={todoItemStyle.todoInput} defaultValue={todo.todo} ref={todoRef} autoFocus />
+      <TodoInput checked={todo.isCompleted} defaultValue={todo.todo} ref={todoRef} autoFocus />
 
       <button data-testid="submit-button" onClick={handleUpdateTodo}>
         <AiOutlineSave size={18} />
@@ -72,10 +72,10 @@ export default function TodoItem({ todo }) {
         checked={todo.isCompleted}
         onChange={handleUpdateTodo}
       />
-      <input
-        css={todoItemStyle.todoInput}
+      <TodoInput
         value={todo.todo}
         ref={todoRef}
+        checked={todo.isCompleted}
         data-testid="modify-input"
         readOnly
       />

@@ -9,6 +9,7 @@ export const todoLi = {
   alignItems: 'center',
   gap: 4,
   '& button': {
+    cursor: 'pointer',
     backgroundColor: `${color.white00}`,
     border: 0,
     width: 24,
@@ -37,11 +38,16 @@ export const CheckboxLabel = styled.label`
   background-color: ${({ checked }) => (checked ? `${color.main}` : '')};
 `;
 
-export const todoInput = {
-  flex: 1,
-  border: 0,
-  fontSize: 16,
-  '&:focus': {
-    outline: 0,
+export const TodoInput = styled.input`
+  flex: 1;
+  border: 0;
+  font-size: 16px;
+  font-style: ${({ checked }) => (checked ? 'italic' : '')};
+  text-decoration:${({ checked }) => (checked ? 'line-through' : '')};
+  text-decoration-color:${color.black40};
+  color:${({ checked }) => (checked ? `${color.black20}` : `${color.black00}`)};
+  
+  &:focus{
+    outline: 0;
   },
-};
+`;
