@@ -31,7 +31,8 @@ export default function Signin() {
   };
   const handlePasswordInputChange = (e) => {
     setPasswordValue(() => e.target.value);
-    if (e.target.value.length < 8 || !emailValue) {
+    console.log(emailValue);
+    if (e.target.value.length < 8 || !emailValue || !/@/.test(emailValue)) {
       setValidError(true);
     } else {
       setValidError(false);

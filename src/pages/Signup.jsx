@@ -31,7 +31,7 @@ export default function Singup() {
   };
   const handlePasswordInputChange = (e) => {
     setPasswordValue(() => e.target.value);
-    if (e.target.value.length < 8 || !emailValue) {
+    if (e.target.value.length < 8 || !emailValue || !/@/.test(emailValue)) {
       setValidError(true);
     } else {
       setValidError(false);
