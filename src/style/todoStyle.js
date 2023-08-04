@@ -66,6 +66,7 @@ export const createForm = {
   },
 
   '& .createButton': {
+    cursor: 'pointer',
     border: 0,
     padding: 0,
     borderLeft: `1px solid ${color.black00}`,
