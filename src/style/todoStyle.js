@@ -5,6 +5,7 @@ export const main = {
   gridTemplateColumns: `repeat(8,1fr)`,
   width: '100vw',
   height: `calc(100vh - 57px)`,
+  color: `${color.black00}`,
 };
 
 export const imgSection = {
@@ -42,6 +43,10 @@ export const todoListUl = {
     width: '100%',
     borderBottom: `1px solid ${color.black00}`,
     fontWeight: 'bold',
+  },
+  '& .listSample': {
+    padding: 16,
+    borderBottom: `1px solid ${color.black00}`,
   },
 };
 
