@@ -3,11 +3,15 @@ import * as signStyle from '../style/signStyle';
 import { useEffect, useState } from 'react';
 import { postSignin } from '../api/Fetcher';
 import { Link, useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { authState } from '../recoil/authState';
 
 export default function Signin() {
   const navigate = useNavigate();
+
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(authState);
   useEffect(() => {
-    if (localStorage.getItem('Token')) {
+    if (isLoggedIn) {
       navigate('/todo');
     }
   }, []);
@@ -44,6 +48,7 @@ export default function Signin() {
     try {
       const response = await postSignin(data);
       localStorage.setItem('Token', response.access_token);
+      setIsLoggedIn(true);
       navigate('/todo');
     } catch (error) {
       console.log(error);
