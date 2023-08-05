@@ -1,8 +1,17 @@
 /** @jsxImportSource @emotion/react */
 import * as todoStyle from '../style/todoStyle';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Main() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (localStorage.getItem('Token')) {
+      navigate('/todo');
+    }
+  }, []);
+
   return (
     <Link to="/signin" role="main" css={todoStyle.main}>
       <section css={todoStyle.imgSection}>

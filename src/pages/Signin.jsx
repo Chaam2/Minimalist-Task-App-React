@@ -3,22 +3,18 @@ import * as signStyle from '../style/signStyle';
 import { useEffect, useState } from 'react';
 import { postSignin } from '../api/Fetcher';
 import { Link, useNavigate } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-import { authState } from '../recoil/authState';
 
 export default function Signin() {
   const navigate = useNavigate();
-
-  const [isLoggedIn, setIsLoggedIn] = useRecoilState(authState);
-  const [emailValue, setEmailValue] = useState('');
-  const [passwordValue, setPasswordValue] = useState('');
-  const [validError, setValidError] = useState(false);
-
   useEffect(() => {
-    if (isLoggedIn) {
+    if (localStorage.getItem('Token')) {
       navigate('/todo');
     }
   }, []);
+
+  const [emailValue, setEmailValue] = useState('');
+  const [passwordValue, setPasswordValue] = useState('');
+  const [validError, setValidError] = useState(false);
 
   // 이메일, 비밀번호 유효성 검사
   const handleEmailInputChange = (e) => {
@@ -31,7 +27,6 @@ export default function Signin() {
   };
   const handlePasswordInputChange = (e) => {
     setPasswordValue(() => e.target.value);
-    console.log(emailValue);
     if (e.target.value.length < 8 || !emailValue || !/@/.test(emailValue)) {
       setValidError(true);
     } else {
@@ -39,7 +34,7 @@ export default function Signin() {
     }
   };
 
-  // 회원가입 api요청 및 리다이렉트
+  // 로그인 api요청 및 리다이렉트
   const handleSigninSubmit = async (e) => {
     e.preventDefault();
     const data = {
@@ -49,7 +44,6 @@ export default function Signin() {
     try {
       const response = await postSignin(data);
       localStorage.setItem('Token', response.access_token);
-      setIsLoggedIn(true);
       navigate('/todo');
     } catch (error) {
       console.log(error);

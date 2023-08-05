@@ -3,19 +3,16 @@ import * as signStyle from '../style/signStyle';
 import { useState, useEffect } from 'react';
 import { postSignup } from '../api/Fetcher';
 import { Link, useNavigate } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-import { authState } from '../recoil/authState';
 
 export default function Singup() {
   const navigate = useNavigate();
 
-  const [isLoggedIn] = useRecoilState(authState);
   const [emailValue, setEmailValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
   const [validError, setValidError] = useState(false);
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (localStorage.getItem('Token')) {
       navigate('/todo');
     }
   }, []);

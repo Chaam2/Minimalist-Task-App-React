@@ -3,15 +3,11 @@ import * as todoStyle from '../style/todoStyle';
 import { useEffect, useRef, useState } from 'react';
 import { createTodo, getTodo } from '../api/Fetcher';
 import TodoItem from '../components/TodoItem';
-import { useRecoilState } from 'recoil';
-import { authState } from '../recoil/authState';
 import { useNavigate } from 'react-router-dom';
 
 export default function Todo() {
   const navigate = useNavigate();
-
   const [todoList, setTodoList] = useState([]);
-  const [isLoggedIn] = useRecoilState(authState);
   const todoRef = useRef();
 
   const getTodoData = async () => {
@@ -20,7 +16,7 @@ export default function Todo() {
   };
   // Read Todo
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (!localStorage.getItem('Token')) {
       navigate('/signin');
       return;
     }
