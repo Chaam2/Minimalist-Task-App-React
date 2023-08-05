@@ -1,17 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import * as todoStyle from '../style/todoStyle';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createTodo, getTodo } from '../api/Fetcher';
 import TodoItem from '../components/TodoItem';
 import { useRecoilState } from 'recoil';
-import { todoListState } from '../recoil/todoListState';
 import { authState } from '../recoil/authState';
 import { useNavigate } from 'react-router-dom';
 
 export default function Todo() {
   const navigate = useNavigate();
 
-  const [todoList, setTodoList] = useRecoilState(todoListState);
+  const [todoList, setTodoList] = useState([]);
   const [isLoggedIn] = useRecoilState(authState);
   const todoRef = useRef();
 
@@ -51,7 +50,7 @@ export default function Todo() {
       <section css={todoStyle.todoSection}>
         <ul css={todoStyle.todoListUl}>
           <li className="listTitle">To-do list</li>
-          {todoList.length > 0 && <TodoItem />}
+          {todoList.length > 0 && <TodoItem todoList={todoList} setTodoList={setTodoList} />}
         </ul>
         <form css={todoStyle.createForm} onSubmit={handleTodoSubmit}>
           <input

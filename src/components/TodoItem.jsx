@@ -4,12 +4,9 @@ import { CheckboxLabel, TodoInput } from '../style/todoItemStyle';
 import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 import { useState } from 'react';
 import { deleteTodo, updateTodo } from '../api/Fetcher';
-import { useRecoilState } from 'recoil';
-import { todoListState } from '../recoil/todoListState';
 import EditTodoItem from './EditTodoItem';
 
-export default function TodoItem() {
-  const [todoList, setTodoList] = useRecoilState(todoListState);
+export default function TodoItem({ todoList, setTodoList }) {
   const [editingId, setEditingId] = useState(null);
 
   return (
@@ -22,8 +19,7 @@ export default function TodoItem() {
           setTodoList(updatedList);
         };
         // Update todo
-        const handleUpdateTodo = async (e) => {
-          console.log(todo.isCompleted);
+        const handleUpdateTodo = async () => {
           const updatedData = {
             todo: todo.todo,
             isCompleted: !todo.isCompleted,
@@ -37,7 +33,13 @@ export default function TodoItem() {
         };
 
         return todo.id === editingId ? (
-          <EditTodoItem key={todo.id} todo={todo} setEditingId={setEditingId} />
+          <EditTodoItem
+            key={todo.id}
+            todo={todo}
+            setEditingId={setEditingId}
+            todoList={todoList}
+            setTodoList={setTodoList}
+          />
         ) : (
           <li key={todo.id} css={todoItemStyle.todoLi}>
             <CheckboxLabel

@@ -4,12 +4,9 @@ import { CheckboxLabel, TodoInput } from '../style/todoItemStyle';
 import { AiOutlineSave, AiOutlineClose } from 'react-icons/ai';
 import { useRef } from 'react';
 import { updateTodo } from '../api/Fetcher';
-import { useRecoilState } from 'recoil';
-import { todoListState } from '../recoil/todoListState';
 
-export default function EditTodoItem({ todo, setEditingId }) {
+export default function EditTodoItem({ todo, setEditingId, todoList, setTodoList }) {
   const todoRef = useRef(todo.todo);
-  const [todoList, setTodoList] = useRecoilState(todoListState);
 
   // Update todo
   const handleUpdateTodo = async (e) => {
