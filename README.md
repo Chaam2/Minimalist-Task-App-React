@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# Wanted-pre-onboarding-FrontEnd
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 지원자 정보
 
-## Available Scripts
+🐥 김차미
 
-In the project directory, you can run:
+✉️ dearcham2@gmail.com
 
-### `npm start`
+## 실행 방법
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. git clone
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+https://github.com/Chaam2/wanted-pre-onboarding-frontend.git
+```
 
-### `npm test`
+2. npm install
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+npm i
+```
 
-### `npm run build`
+3. npm start
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+npm start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 배포 링크
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+[🌐 배포 사이트 바로가기](https://todo-list-chaam2.vercel.app/)
 
-### `npm run eject`
+[<img width="100%" alt="배포사이트" src="https://github.com/Chaam2/wanted-pre-onboarding-frontend/assets/126763111/1555b4c3-012a-4b68-bf98-f2cb9adefb45">](https://todo-list-chaam2.vercel.app/)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+**테스트용 계정**
+| 아이디 | chacha@mail.com|
+| --- | --- |
+| 패스워드 | qwer1234 |
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 주요 기능
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 유효성 검사
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- 이메일 주소에 '@'가 포함되어있지 않거나, 비밀번호가 8자리 미만인 경우 버튼이 disabled 상태가 된다.
 
-## Learn More
+  ![유효성 검사 gif](https://github.com/Chaam2/wanted-pre-onboarding-frontend/assets/126763111/d5e65178-4b0e-4d97-afa4-593334ceb86f)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 투두리스트
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- 새로운 투두리스트를 생성할 수 있다.
 
-### Code Splitting
+  ![투두 작성](https://github.com/Chaam2/wanted-pre-onboarding-frontend/assets/126763111/c3a09727-998e-4e28-b721-153024774c25)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- 완료처리하거나 내용을 수정 및 삭제할 수 있다.
 
-### Analyzing the Bundle Size
+  ![수정 삭제](https://github.com/Chaam2/wanted-pre-onboarding-frontend/assets/126763111/f40dec5c-80b9-4410-9c2f-915414eeae39)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### 리다이렉트
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- 로그인 하지 않은 유저가 /todo 페이지에 접근하면 로그인 페이지로 리다이렉트 된다.
+- 이미 로그인 한 유저가 /signin 또는 /signup페이지에 접근 시 /todo 페이지로 리다이렉트 된다.
