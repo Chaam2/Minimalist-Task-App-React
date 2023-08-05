@@ -32,7 +32,7 @@ export const todoListUl = {
   borderBottom: `1px solid ${color.black00}`,
   overflow: 'auto',
 
-  '& >li: nth-child(2)': {
+  '& >li: nth-of-type(2)': {
     marginTop: 49,
   },
 
