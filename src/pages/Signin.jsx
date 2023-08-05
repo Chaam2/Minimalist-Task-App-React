@@ -19,7 +19,7 @@ export default function Signin() {
   // 이메일, 비밀번호 유효성 검사
   const handleEmailInputChange = (e) => {
     setEmailValue(() => e.target.value);
-    if (!/@/.test(e.target.value) || !passwordValue) {
+    if (!/@/.test(e.target.value) || !passwordValue || passwordValue.length < 8) {
       setValidError(true);
     } else {
       setValidError(false);
