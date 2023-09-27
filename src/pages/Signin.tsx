@@ -1,8 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import * as signStyle from '../style/signStyle';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { postSignin } from '../api/Fetcher';
 import { Link, useNavigate } from 'react-router-dom';
+import { userType } from '@/@types/userType';
 
 export default function Signin() {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ export default function Signin() {
   const [validError, setValidError] = useState(false);
 
   // 이메일, 비밀번호 유효성 검사
-  const handleEmailInputChange = (e) => {
+  const handleEmailInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmailValue(() => e.target.value);
     if (!/@/.test(e.target.value) || !passwordValue || passwordValue.length < 8) {
       setValidError(true);
@@ -25,7 +26,7 @@ export default function Signin() {
       setValidError(false);
     }
   };
-  const handlePasswordInputChange = (e) => {
+  const handlePasswordInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPasswordValue(() => e.target.value);
     if (e.target.value.length < 8 || !emailValue || !/@/.test(emailValue)) {
       setValidError(true);
@@ -35,14 +36,16 @@ export default function Signin() {
   };
 
   // 로그인 api요청 및 리다이렉트
-  const handleSigninSubmit = async (e) => {
+  const handleSigninSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data = {
+    const data: userType = {
       email: emailValue,
       password: passwordValue,
     };
     try {
       const response = await postSignin(data);
+      /** @todo token 관련 로직 모듈화 */
+      //@ts-ignore
       localStorage.setItem('Token', response.access_token);
       navigate('/todo');
     } catch (error) {
