@@ -1,8 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import * as signStyle from '../style/signStyle';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { postSignup } from '../api/Fetcher';
 import { Link, useNavigate } from 'react-router-dom';
+import { userType } from '@/@types/userType';
 
 export default function Singup() {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ export default function Singup() {
   }, []);
 
   // 이메일, 비밀번호 유효성 검사
-  const handleEmailInputChange = (e) => {
+  const handleEmailInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmailValue(() => e.target.value);
     if (!/@/.test(e.target.value) || !passwordValue || passwordValue.length < 8) {
       setValidError(true);
@@ -26,7 +27,7 @@ export default function Singup() {
       setValidError(false);
     }
   };
-  const handlePasswordInputChange = (e) => {
+  const handlePasswordInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPasswordValue(() => e.target.value);
     if (e.target.value.length < 8 || !emailValue || !/@/.test(emailValue)) {
       setValidError(true);
@@ -36,9 +37,9 @@ export default function Singup() {
   };
 
   // 회원가입 api요청 및 리다이렉트
-  const handleSignupSubmit = async (e) => {
+  const handleSignupSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data = {
+    const data: userType = {
       email: emailValue,
       password: passwordValue,
     };
