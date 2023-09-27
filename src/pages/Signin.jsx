@@ -46,7 +46,7 @@ export default function Signin() {
       localStorage.setItem('Token', response.access_token);
       navigate('/todo');
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

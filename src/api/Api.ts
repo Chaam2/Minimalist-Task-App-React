@@ -1,3 +1,4 @@
+import { rejects } from 'assert';
 import axios from 'axios';
 // axios 인스턴스 생성
 const Api = axios.create({
@@ -19,6 +20,7 @@ Api.interceptors.response.use(
 
   async (error) => {
     alert(error.response.data.message);
+    return Promise.reject(error);
   }
 );
 

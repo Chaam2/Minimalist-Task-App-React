@@ -10,16 +10,20 @@ export default function EditTodoItem({ todo, setEditingId, todoList, setTodoList
 
   // Update todo
   const handleUpdateTodo = async (e) => {
-    const updatedData = {
-      todo: todoRef.current.value,
-      isCompleted: e.target.type === 'checkbox' ? !todo.isCompleted : todo.isCompleted,
-    };
-    const updatedTodo = await updateTodo(updatedData, todo.id);
-    const updatedList = todoList.map((prevTodo) =>
-      prevTodo.id === todo.id ? updatedTodo : prevTodo
-    );
-    setTodoList(updatedList);
-    setEditingId(null);
+    try {
+      const updatedData = {
+        todo: todoRef.current.value,
+        isCompleted: e.target.type === 'checkbox' ? !todo.isCompleted : todo.isCompleted,
+      };
+      const updatedTodo = await updateTodo(updatedData, todo.id);
+      const updatedList = todoList.map((prevTodo) =>
+        prevTodo.id === todo.id ? updatedTodo : prevTodo
+      );
+      setTodoList(updatedList);
+      setEditingId(null);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

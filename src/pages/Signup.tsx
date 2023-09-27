@@ -39,13 +39,17 @@ export default function Singup() {
   // 회원가입 api요청 및 리다이렉트
   const handleSignupSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data: userType = {
-      email: emailValue,
-      password: passwordValue,
-    };
-    await postSignup(data);
-    alert('성공적으로 가입되었습니다!\n로그인페이지로 이동합니다.');
-    navigate('/signin');
+    try {
+      const data: userType = {
+        email: emailValue,
+        password: passwordValue,
+      };
+      await postSignup(data);
+      alert('성공적으로 가입되었습니다!\n로그인페이지로 이동합니다.');
+      navigate('/signin');
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

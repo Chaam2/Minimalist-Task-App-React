@@ -11,8 +11,12 @@ export default function Todo() {
   const todoRef = useRef();
 
   const getTodoData = async () => {
-    const todoData = await getTodo();
-    setTodoList(todoData);
+    try {
+      const todoData = await getTodo();
+      setTodoList(todoData);
+    } catch (error) {
+      console.error(error);
+    }
   };
   // Read Todo
   useEffect(() => {
@@ -26,12 +30,16 @@ export default function Todo() {
   // Create Todo
   const handleTodoSubmit = async (e) => {
     e.preventDefault();
-    const todoData = {
-      todo: todoRef.current.value,
-    };
-    const newTodo = await createTodo(todoData);
-    todoRef.current.value = '';
-    setTodoList([...todoList, newTodo]);
+    try {
+      const todoData = {
+        todo: todoRef.current.value,
+      };
+      const newTodo = await createTodo(todoData);
+      todoRef.current.value = '';
+      setTodoList([...todoList, newTodo]);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
