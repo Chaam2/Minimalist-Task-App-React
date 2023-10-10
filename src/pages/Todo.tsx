@@ -4,15 +4,21 @@ import { useEffect, useRef, useState } from 'react';
 import { createTodo, getTodo } from '../api/Fetcher';
 import TodoItem from '../components/TodoItem';
 import { useNavigate } from 'react-router-dom';
+import { todoType } from '@/@types/todoType';
 
 export default function Todo() {
   const navigate = useNavigate();
-  const [todoList, setTodoList] = useState([]);
-  const todoRef = useRef();
+  const [todoList, setTodoList] = useState<todoType[]>([]);
+  const todoRef = useRef<HTMLInputElement | null>(null);
 
   const getTodoData = async () => {
-    const todoData = await getTodo();
-    setTodoList(todoData);
+    try {
+      //@ts-ignore
+      const todoData: todoType[] = await getTodo();
+      setTodoList(todoData);
+    } catch (error) {
+      console.error(error);
+    }
   };
   // Read Todo
   useEffect(() => {
@@ -24,14 +30,21 @@ export default function Todo() {
   }, []);
 
   // Create Todo
-  const handleTodoSubmit = async (e) => {
+  const handleTodoSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const todoData = {
-      todo: todoRef.current.value,
-    };
-    const newTodo = await createTodo(todoData);
-    todoRef.current.value = '';
-    setTodoList([...todoList, newTodo]);
+    try {
+      if (todoRef.current) {
+        const todoData = {
+          todo: todoRef.current.value,
+        };
+        //@ts-ignore
+        const newTodo: todoType = await createTodo(todoData);
+        todoRef.current.value = '';
+        setTodoList([...todoList, newTodo]);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

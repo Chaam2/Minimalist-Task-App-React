@@ -1,33 +1,34 @@
+import { css } from '@emotion/react';
 import color from './color';
 
-export const main = {
+export const main = css({
   display: 'grid',
   gridTemplateColumns: `repeat(8,1fr)`,
   width: '100vw',
   height: `calc(100vh - 57px)`,
   color: `${color.black00}`,
-};
+});
 
-export const imgSection = {
+export const imgSection = css({
   gridColumn: '1/6',
   overflow: 'hidden',
-};
+});
 
-export const mainImg = {
+export const mainImg = css({
   width: '100%',
   height: '100%',
   objectFit: 'cover',
-};
+});
 
-export const todoSection = {
+export const todoSection = css({
   gridColumn: '6/9',
   display: 'grid',
   gridTemplateRows: `repeat(8,1fr)`,
   borderLeft: `1px solid ${color.black00}`,
   overflow: 'auto',
-};
+});
 
-export const todoListUl = {
+export const todoListUl = css({
   gridRow: '1/8',
   borderBottom: `1px solid ${color.black00}`,
   overflow: 'auto',
@@ -49,9 +50,9 @@ export const todoListUl = {
     padding: 16,
     borderBottom: `1px solid ${color.black00}`,
   },
-};
+});
 
-export const createForm = {
+export const createForm = css({
   gridRow: '8/9',
   display: 'flex',
 
@@ -79,4 +80,4 @@ export const createForm = {
       backgroundColor: `${color.black10}`,
     },
   },
-};
+});

@@ -1,29 +1,30 @@
+import { css } from '@emotion/react';
 import color from './color';
 
-export const main = {
+export const main = css({
   width: '100vw',
   height: `calc(100vh - 57px)`,
   display: 'grid',
   gridTemplateColumns: 'repeat(4,1fr)',
-};
+});
 
-export const signSection = {
+export const signSection = css({
   gridColumn: '2/4',
   borderLeft: `1px solid ${color.black00}`,
   borderRight: `1px solid ${color.black00}`,
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-};
+});
 
-export const pageTitle = {
+export const pageTitle = css({
   fontFamily: 'PerihelionCondBB, Helvetica',
   fontSize: 22,
   fontWeight: 'bold',
   padding: '4.5rem 0',
-};
+});
 
-export const signForm = {
+export const signForm = css({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -63,9 +64,9 @@ export const signForm = {
       backgroundColor: `${color.black40}`,
     },
   },
-};
+});
 
-export const bottomLink = {
+export const bottomLink = css({
   fontSize: 14,
   marginTop: 8,
   '& a': {
@@ -75,4 +76,4 @@ export const bottomLink = {
       color: `${color.black20}`,
     },
   },
-};
+});
