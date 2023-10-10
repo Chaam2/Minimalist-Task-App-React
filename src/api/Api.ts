@@ -1,8 +1,7 @@
-import { rejects } from 'assert';
 import axios from 'axios';
 // axios 인스턴스 생성
 const Api = axios.create({
-  baseURL: 'https://www.pre-onboarding-selection-task.shop',
+  baseURL: 'https://www.pre-onboarding-selection-task.store',
 });
 
 // 요청 인터셉터 - 헤더 설정
