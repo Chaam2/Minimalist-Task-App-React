@@ -4,21 +4,40 @@ import { CheckboxLabel, TodoInput } from '../style/todoItemStyle';
 import { AiOutlineSave, AiOutlineClose } from 'react-icons/ai';
 import { useRef } from 'react';
 import { updateTodo } from '../api/Fetcher';
+import { editTodoItemProp, todoType } from '@/@types/todoType';
 
-export default function EditTodoItem({ todo, setEditingId, todoList, setTodoList }) {
-  const todoRef = useRef(todo.todo);
+export default function EditTodoItem({
+  todo,
+  setEditingId,
+  todoList,
+  setTodoList,
+}: editTodoItemProp) {
+  const todoRef = useRef<HTMLInputElement | null>(null);
+
+  const handleCheckboxToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const updatedData = {
+      todo: todo.todo,
+      isCompleted: !todo.isCompleted,
+    };
+    updateTodoData(updatedData);
+  };
+
+  const handleSubmitClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const updatedData = {
+      todo: todoRef.current?.value || todo.todo,
+      isCompleted: todo.isCompleted,
+    };
+    updateTodoData(updatedData);
+  };
 
   // Update todo
-  const handleUpdateTodo = async (e) => {
+  const updateTodoData = async (updatedData: Pick<todoType, 'todo' | 'isCompleted'>) => {
     try {
-      const updatedData = {
-        todo: todoRef.current.value,
-        isCompleted: e.target.type === 'checkbox' ? !todo.isCompleted : todo.isCompleted,
-      };
       const updatedTodo = await updateTodo(updatedData, todo.id);
       const updatedList = todoList.map((prevTodo) =>
         prevTodo.id === todo.id ? updatedTodo : prevTodo
       );
+      //@ts-ignore
       setTodoList(updatedList);
       setEditingId(null);
     } catch (error) {
@@ -34,7 +53,7 @@ export default function EditTodoItem({ todo, setEditingId, todoList, setTodoList
         id={'checkbox_' + todo.id}
         type="checkbox"
         checked={todo.isCompleted}
-        onChange={handleUpdateTodo}
+        onChange={handleCheckboxToggle}
       />
       <TodoInput
         checked={todo.isCompleted}
@@ -44,7 +63,7 @@ export default function EditTodoItem({ todo, setEditingId, todoList, setTodoList
         autoFocus
       />
 
-      <button data-testid="submit-button" onClick={handleUpdateTodo}>
+      <button data-testid="submit-button" onClick={handleSubmitClick}>
         <AiOutlineSave size={18} />
       </button>
       <button

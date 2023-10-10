@@ -1,5 +1,3 @@
-import { AxiosResponse } from 'axios';
-
 export type todoType = {
   id: number;
   todo: string;
@@ -8,6 +6,13 @@ export type todoType = {
 };
 
 export type todoItemProp = {
+  todoList: todoType[];
+  setTodoList: (updatedList: todoType[]) => void;
+};
+
+export type editTodoItemProp = {
+  todo: todoType;
+  setEditingId: (id: number | null) => void;
   todoList: todoType[];
   setTodoList: (updatedList: todoType[]) => void;
 };
