@@ -5,9 +5,10 @@ import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 import { useState } from 'react';
 import { deleteTodo, updateTodo } from '../api/Fetcher';
 import EditTodoItem from './EditTodoItem';
+import { todoItemProp } from '@/@types/todoType';
 
-export default function TodoItem({ todoList, setTodoList }) {
-  const [editingId, setEditingId] = useState(null);
+export default function TodoItem({ todoList, setTodoList }: todoItemProp) {
+  const [editingId, setEditingId] = useState<null | Number>(null);
 
   return (
     <>
@@ -28,6 +29,7 @@ export default function TodoItem({ todoList, setTodoList }) {
           const updatedList = todoList.map((prevTodo) =>
             prevTodo.id === todo.id ? updatedTodo : prevTodo
           );
+          //@ts-ignore
           setTodoList(updatedList);
           setEditingId(null);
         };

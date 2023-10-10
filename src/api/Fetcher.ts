@@ -14,15 +14,12 @@ export async function postSignin(data: userType) {
 export async function getTodo() {
   return await Api.get('/todos');
 }
-export async function createTodo(data: Pick<todoType, 'todo'>) {
+export async function createTodo(data: string) {
   return await Api.post('/todos', data);
 }
-export async function updateTodo(
-  data: Pick<todoType, 'todo' | 'isCompleted'>,
-  todoId: Pick<todoType, 'id'>
-) {
+export async function updateTodo(data: Pick<todoType, 'todo' | 'isCompleted'>, todoId: number) {
   return await Api.put(`/todos/${todoId}`, data);
 }
-export async function deleteTodo(todoId: Pick<todoType, 'id'>) {
+export async function deleteTodo(todoId: number) {
   return await Api.delete(`/todos/${todoId}`);
 }
