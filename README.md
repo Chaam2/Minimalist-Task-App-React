@@ -1,17 +1,11 @@
-# Wanted-pre-onboarding-FrontEnd
-
-## 지원자 정보
-
-🐥 김차미
-
-✉️ dearcham2@gmail.com
+# Minimalist Task App
 
 ## 실행 방법
 
 1. git clone
 
 ```
-https://github.com/Chaam2/wanted-pre-onboarding-frontend.git
+git clone https://github.com/Chaam2/wanted-pre-onboarding-frontend.git
 ```
 
 2. npm install
@@ -28,9 +22,9 @@ npm start
 
 ## 배포 링크
 
-[🌐 배포 사이트 바로가기](https://todo-list-chaam2.vercel.app/)
+[🌐 배포 사이트 바로가기](https://minimalist-task-app-react.vercel.app/)
 
-[<img width="100%" alt="배포사이트" src="https://github.com/Chaam2/wanted-pre-onboarding-frontend/assets/126763111/1555b4c3-012a-4b68-bf98-f2cb9adefb45">](https://todo-list-chaam2.vercel.app/)
+[<img width="100%" alt="배포사이트" src="https://github.com/Chaam2/wanted-pre-onboarding-frontend/assets/126763111/1555b4c3-012a-4b68-bf98-f2cb9adefb45">](https://minimalist-task-app-react.vercel.app/)
 
 **테스트용 계정**
 | 아이디 | chacha@mail.com|
